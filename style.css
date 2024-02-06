@@ -11,6 +11,8 @@
     --green: #19B912;
     --lighter-green: #1fd515;
     --black: #000000;
+    --blue: #00bbf0;
+    --lighter-blue: #04c9ff;
 }
 
 *{
@@ -66,7 +68,7 @@ body{
 .notes-controls{
     position: relative;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .notes-control{
@@ -74,12 +76,17 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 5px;
     box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+}
+
+.icon{
+    font-size: 2rem;
+    font-weight: 700;
+    color: inherit;
 }
 
 .notes-control:hover .explain{
@@ -98,6 +105,7 @@ body{
     border: none;
     border-radius: 10px;
     box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+    color: var(--gray);
 }
 
 .explain::after{
@@ -126,20 +134,36 @@ body{
     background-color: var(--lighter-red);
 }
 
-#add-note{
-    display: block;
-    background-color: var(--green);
-    padding: 1rem 2rem;
-    font-size: 1.25rem;
-    font-weight: 500;
+#mark-notes{
+    position: relative;
+    background-color: var(--blue);
     color: var(--gray);
-    border: none;
-    outline: none;
-    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.131);
+}
+
+#mark-notes:hover{
+    background-color: var(--lighter-blue);
+}
+
+#mark-notes .icon{
+    position: absolute;
+    bottom: 1px;
+}
+
+#add-note{
+    background-color: var(--green);
+    color: var(--gray);
+    border: 1px solid rgba(0, 0, 0, 0.131);
 }
 
 #add-note:hover{
     background-color: var(--lighter-green);
+}
+
+#add-note .icon{
+    position: absolute;
+    font-size: 3rem;
+    top: -11px;
 }
 
 #note-form{
@@ -171,6 +195,20 @@ body{
     border: none;
 }
 
+.note-form--labels{
+    display: flex;
+    justify-content: space-between;
+}
+
+.note-form--labels label{
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.note-form--error{
+    color: var(--rose-red);
+}
+
 .notes{
     display: flex;
     flex-direction: column;
@@ -183,7 +221,7 @@ body{
     background-color: var(--gray); 
     padding: 1rem;
     padding-top: 2.5rem;
-    min-height: 200px;
+    min-height: 150px;
     min-width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.146);
     border-top-left-radius: 15px;

@@ -1,20 +1,22 @@
 let notes = [];
 let flag = false;
-
 const addNote = document.querySelector("#add-note");
+const IconAddNote = addNote.querySelector(".icon");
 
 addNote.addEventListener('click', () => {
   if(noteForm.classList.contains('hidden') != false) {
     noteForm.classList.toggle('hidden');
-    addNote.innerText = "Hide form"
+    IconAddNote.innerText = "⤻"
   } else{
     noteForm.classList.toggle('hidden');
-    addNote.innerText = "Add Note"
+    IconAddNote.innerText = "+"
   }
 })
 
 const notesContainer = document.querySelector(".notes")
 const noteForm = document.querySelector("#note-form");
+const formErrorLabel = document.querySelector(".note-form--error");
+
 
 let userTitle, userContent;
 
@@ -22,6 +24,10 @@ noteForm.addEventListener('submit', (event) => {
   event.preventDefault();
   userTitle = event.target[0].value;
   userContent = event.target[1].value;
+  if(userTitle == "" || userContent == ""){
+    formErrorLabel.innerText = "Data wasn't entered"
+    return;
+  }
   noteForm.classList.toggle('hidden');
   let userData = {
     id: notes.length,
@@ -33,6 +39,7 @@ noteForm.addEventListener('submit', (event) => {
   userData.content = userContent;
   notes.push(userData);
   notesContainer.innerHTML = "";
+  IconAddNote.innerHTML = "⤻";
   notes.forEach((note) => {
   
     const noteContainer = document.createElement('div');
@@ -48,10 +55,20 @@ noteForm.addEventListener('submit', (event) => {
     noteButtons.classList.add("notes-controls", "note-controls");
     
     const noteDelete = document.createElement('div');
-
     noteDelete.classList.add("delete-note", "notes-control");
-    noteDelete.innerHTML = "X";
-    
+    noteDelete.innerHTML = "🗑";
+    noteButtons.append(noteDelete);
+
+    const explanationDelete = document.createElement('span');
+    explanationDelete.classList.add('explain');
+    explanationDelete.innerText = "Delete this note";
+    noteDelete.append(explanationDelete);
+
+    const iconDelete = document.createElement('span');
+    iconDelete.classList.add('icon');
+    iconDelete.innerText = "X";
+    noteDelete.append(iconDelete);
+
     if(flag == false) {
       noteDelete.classList.add("hidden");
     }
@@ -64,7 +81,6 @@ noteForm.addEventListener('submit', (event) => {
       ancestorContainer.remove();
     })
     
-    noteButtons.append(noteDelete);
     
     const noteContent = document.createElement('div');
     noteContent.classList.add("note");

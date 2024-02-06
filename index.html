@@ -11,15 +11,25 @@
         <header class="container-item header">
             <h1 class="header-title">Notepad</h1>
             <div class="notes-controls">
+                <div id="mark-notes" class="notes-control">
+                    <span class="explain">Mark notes to edit</span>
+                    <span class="icon">✎</span>
+                </div>
                 <div id="delete-notes" class="notes-control">
                     <span class="explain">Toggle notes delete</span>
-                    X
+                    <span class="icon">X</span>
+                </div>
+                <div id="add-note" class="notes-control">
+                    <span class="explain">Add a new note</span>
+                    <span class="icon">+</span>
                 </div>
             </div>
         </header>
-        <button class="container-item" id="add-note">Add note</button>
         <form id="note-form" class="hidden">
-            <h2>Enter note title and content</h2>
+            <div class="note-form--labels">
+                <label class="note-form--header">Enter note title and content</label>
+                <label class="note-form--error"></label>
+            </div>
             <input type="text" name="note-title" id="note-title">
             <input type="text" name="note-content" id="note-content">
             <input type="submit" value="Submit">
@@ -29,7 +39,8 @@
                 <h3 class="note-title">Hello world</h3>
                 <div class="notes-controls note-controls">
                     <div class="delete-note notes-control hidden">
-                        X
+                        <span class="explain">Delete this note</span>
+                        🗑
                     </div>
                 </div>
                 <div class="note">
