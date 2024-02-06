@@ -56,7 +56,6 @@ noteForm.addEventListener('submit', (event) => {
     
     const noteDelete = document.createElement('div');
     noteDelete.classList.add("delete-note", "notes-control");
-    noteDelete.innerHTML = "🗑";
     noteButtons.append(noteDelete);
 
     const explanationDelete = document.createElement('span');
@@ -66,7 +65,7 @@ noteForm.addEventListener('submit', (event) => {
 
     const iconDelete = document.createElement('span');
     iconDelete.classList.add('icon');
-    iconDelete.innerText = "X";
+    iconDelete.innerText = "🗑";
     noteDelete.append(iconDelete);
 
     if(flag == false) {

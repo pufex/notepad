@@ -52,7 +52,7 @@ body{
 .header{
     position: relative;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -65,10 +65,28 @@ body{
     text-shadow: 0 0 6px rgba(0, 0, 0, 0.075);
 }
 
-.notes-controls{
+
+.notes-controls, .socials{
     position: relative;
     display: flex;
     gap: 0.5rem;
+}
+
+.socials-link{
+    text-decoration: none;
+}
+
+.socials-image{
+    display: block;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+    object-fit: contain;
+}
+
+#github-image{
+    background-color: white;
 }
 
 .notes-control{
@@ -236,6 +254,7 @@ body{
     background-color: var(--yellow);
     width: 100%;
     height: 100%;
+    padding: 1rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.131);
@@ -268,7 +287,42 @@ body{
     background-color: var(--lighter-red);
 }
 
+.delete-note .icon{
+    font-size: 1rem;
+}
 
+.margin-top{
+    margin-top: 2rem;
+}
+
+.text-paragraph{
+    font-size: 1.1rem;
+}
+
+.footer{
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.footer-link{
+    position: relative;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: blue;
+}
+
+.footer-link:hover{
+    color: rgb(53, 53, 248);
+}
+
+.footer-link::after{
+    content: '|';
+    position: absolute;
+    right: -1rem;
+}
 
 .hidden{
     display: none !important;
