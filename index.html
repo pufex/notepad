@@ -18,17 +18,26 @@
             </div>
         </header>
         <button class="container-item" id="add-note">Add note</button>
-        <div class="container-item note-container">
-            <h3 class="note-title">Hello world</h3>
-            <div class="notes-controls note-controls">
-                <div id="delete-note" class="notes-control hidden">
-                    X
+        <form id="note-form" class="hidden">
+            <h2>Enter note title and content</h2>
+            <input type="text" name="note-title" id="note-title">
+            <input type="text" name="note-content" id="note-content">
+            <input type="submit" value="Submit">
+        </form>
+        <div class="notes">
+            <div class="container-item note-container">
+                <h3 class="note-title">Hello world</h3>
+                <div class="notes-controls note-controls">
+                    <div class="delete-note notes-control hidden">
+                        X
+                    </div>
                 </div>
-            </div>
-            <div class="note">
-                
+                <div class="note">
+                    
+                </div>
             </div>
         </div>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>
