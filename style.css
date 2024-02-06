@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root{
+    --gray: #ECEDE8;
+    --darker-gray: #D6D6D6;
+    --yellow: #F4D05B;
+    --lighter-yellow: #F4D05B;
+    --dark-gray: #5C5C5C;
+    --rose-red: #BA224A;
+    --lighter-red: #e22759;
+    --green: #19B912;
+    --lighter-green: #1fd515;
+    --black: #000000;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    font-size: 1rem;
+    user-select: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    min-height: 100vh;
+    width: 100%;
+    font-size: 15px;
+    background-color: var(--darker-gray);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container-item{
+    width: 100%;
+    border: none;
+}
+
+.header{
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.header-title{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.075);
+}
+
+.notes-controls{
+    position: relative;
+    display: flex;
+    gap: 1rem;
+}
+
+.notes-control{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+}
+
+.notes-control:hover .explain{
+    display: block;
+}
+
+.explain{
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    left: 50%;
+    text-wrap: nowrap;
+    padding: 1rem;
+    background-color: var(--black);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+}
+
+.explain::after{
+    content: ' ';
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0.5rem;
+    width: 0.5rem;
+    background-image: url('images/down-arrow.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+}
+
+#delete-notes{
+    background-color: var(--rose-red);
+    color: var(--gray);
+    border: 1px solid rgba(0, 0, 0, 0.131);
+}
+
+#delete-notes:hover{
+    background-color: var(--lighter-red);
+}
+
+#add-note{
+    display: block;
+    background-color: var(--green);
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--gray);
+    border: none;
+    outline: none;
+    border-radius: 7px;
+}
+
+#add-note:hover{
+    background-color: var(--lighter-green);
+}
+
+
+.note-container{
+    position: relative;
+    background-color: var(--gray); 
+    padding: 1rem;
+    padding-top: 2.5rem;
+    min-height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.146);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.note-container:hover .note{
+    background-color: var(--lighter-yellow);
+}
+
+.note{
+    background-color: var(--yellow);
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.131);
+}
+
+.note-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black);
+    position: absolute;
+    left: 2rem;
+    top: 0.5rem;
+}
+
+.note-controls{
+    position: absolute;
+    right: 2rem;
+    top: 0.5rem;
+}
+
+#delete-note{
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 1rem;
+    color: var(--gray);
+    background-color: var(--rose-red);
+}
+
+#delete-note:hover{
+    background-color: var(--lighter-red);
+}
+
+
+
+.hidden{
+    display: none !important;
+}
