@@ -142,14 +142,19 @@ body{
     box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
 }
 
-#delete-notes{
+#toggle-visibility{
     background-color: var(--rose-red);
     color: var(--gray);
     border: 1px solid rgba(0, 0, 0, 0.131);
 }
 
-#delete-notes:hover{
+#toggle-visibility:hover{
     background-color: var(--lighter-red);
+}
+
+#toggle-visibility .icon{
+    position: absolute;
+    bottom: 0px;
 }
 
 #mark-notes{
@@ -288,6 +293,24 @@ body{
 }
 
 .delete-note .icon{
+    font-size: 1rem;
+}
+
+.edit-note{
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 1rem;
+    color: var(--gray);
+    background-color: var(--blue);
+}
+
+.edit-note:hover{
+    background-color: var(--lighter-blue);
+}
+
+.edit-note .icon{
+    position: absolute;
+    bottom: 2px;
     font-size: 1rem;
 }
 

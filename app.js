@@ -1,5 +1,15 @@
 let notes = [];
 let flag = false;
+
+const elementCreating = (element = "", classes = [], textInner = "") =>{
+  element = document.createElement(element);
+  classes.forEach((item) => {
+    element.classList.add(item);
+  })
+  if(textInner !== "") element.innerText = "Delete this note";
+  return;
+}
+
 const addNote = document.querySelector("#add-note");
 const IconAddNote = addNote.querySelector(".icon");
 
@@ -47,7 +57,7 @@ noteForm.addEventListener('submit', (event) => {
     noteContainer.classList.add("container-item");
     noteContainer.classList.add("note-container");
   
-    const noteTitle = document.createElement('h3');
+    const noteTitle = elementCreating()
     noteTitle.classList.add("note-title");
     noteTitle.innerHTML = note.title;
     
@@ -92,11 +102,15 @@ noteForm.addEventListener('submit', (event) => {
 
 
 
-const deleteToggle = document.querySelector("#delete-notes");
+const visibilityToggle = document.querySelector("#toggle-visibility");
+console.log(visibilityToggle)
 
-deleteToggle.addEventListener('click', () => {
-    const deleteButtons = document.querySelectorAll(".delete-note"); 
-    deleteButtons.forEach(button => {
-        button.classList.toggle('hidden');
+
+visibilityToggle.addEventListener('click', () => {
+    const noteControls = document.querySelectorAll(".note-controls");
+    console.log(noteControls);
+    noteControls.forEach(item => {
+      if(item.classList.contains("hidden") == false) flag = true;
+      item.classList.toggle('hidden');
     })
 })
