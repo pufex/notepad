@@ -280,6 +280,16 @@ body{
     top: 0.5rem;
 }
 
+.note-number{
+    position: absolute;
+    top: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black);
+}
+
 .delete-note{
     height: 1.5rem;
     width: 1.5rem;
@@ -314,6 +324,64 @@ body{
     font-size: 1rem;
 }
 
+.edit-window{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.734);
+}
+
+.edit-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--gray);
+}
+
+.edit-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.edit-input, .update{
+    width: 100%;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+    outline: none;
+}
+
+.edit-input{
+    color: var(--black);
+    padding: 1rem 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.806);
+}
+
+.update{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--green);
+    padding: 1rem;
+    color: var(--gray);
+    cursor: pointer;
+}
+
+.update:hover{
+    background-color: var(--lighter-green);
+}
+
 .margin-top{
     margin-top: 2rem;
 }
@@ -322,11 +390,14 @@ body{
     font-size: 1.1rem;
 }
 
+.text-paragraph--last{
+    margin-bottom: 2rem;
+}
+
 .footer{
     display: flex;
     gap: 2rem;
     width: 100%;
-    margin-top: 2rem;
 }
 
 .footer-link{
