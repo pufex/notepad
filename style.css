@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root{
-    --gray: #ECEDE8;
-    --darker-gray: #D6D6D6;
+    --main-color: #ECEDE8;
+    --second-color: #D6D6D6;
+    --third-color: #5C5C5C;
+    --fourth-color: #000000;
+    --black: #000000;
+    --white: white;
     --yellow: #F4D05B;
     --lighter-yellow: #F4D05B;
-    --dark-gray: #5C5C5C;
     --rose-red: #BA224A;
     --lighter-red: #e22759;
     --green: #19B912;
     --lighter-green: #1fd515;
-    --black: #000000;
     --blue: #00bbf0;
     --lighter-blue: #04c9ff;
 }
@@ -22,6 +24,7 @@
     box-sizing: border-box;
     font-size: 1rem;
     user-select: none;
+    color: var(--fourth-color);
 }
 
 body{
@@ -31,7 +34,7 @@ body{
     min-height: 100vh;
     width: 100%;
     font-size: 15px;
-    background-color: var(--darker-gray);
+    background-color: var(--second-color);
 }
 
 .container{
@@ -117,34 +120,40 @@ body{
     bottom: calc(100% + 0.5rem);
     transform: translateX(-50%);
     left: 50%;
-    text-wrap: nowrap;
     padding: 1rem;
-    background-color: var(--black);
+    background-color: var(--fourth-color);
     border: none;
     border-radius: 10px;
     box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
-    color: var(--gray);
 }
 
-.explain::after{
-    content: ' ';
+.explain-text{
+    display: inline;
+    color: var(--main-color);
+    text-wrap: nowrap;
+    font-size: 1rem;
+}
+
+.explain-triangle{
     position: absolute;
-    display: block;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    height: 0.5rem;
-    width: 0.5rem;
-    background-image: url('images/down-arrow.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: top;
-    box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
+
+    box-sizing: content-box;
+
+    width: 0; 
+    height: 0; 
+    border-left: 0.5rem solid transparent;
+    border-right:0.5rem solid transparent; 
+    border-top: 0.5rem solid var(--fourth-color); 
+  
+
 }
 
 #toggle-visibility{
     background-color: var(--rose-red);
-    color: var(--gray);
+    color: var(--white);
     border: 1px solid rgba(0, 0, 0, 0.131);
 }
 
@@ -157,25 +166,29 @@ body{
     bottom: 0px;
 }
 
-#mark-notes{
+#dark-mode{
     position: relative;
     background-color: var(--blue);
-    color: var(--gray);
+    color: var(--white);
     border: 1px solid rgba(0, 0, 0, 0.131);
 }
 
-#mark-notes:hover{
+.dark-mode--active{
+    background-color: var(--third-color) !important;
+}
+
+#dark-mode:hover{
     background-color: var(--lighter-blue);
 }
 
-#mark-notes .icon{
+#dark-mode .icon{
     position: absolute;
     bottom: 1px;
 }
 
 #add-note{
     background-color: var(--green);
-    color: var(--gray);
+    color: var(--main-color);
     border: 1px solid rgba(0, 0, 0, 0.131);
 }
 
@@ -186,6 +199,7 @@ body{
 #add-note .icon{
     position: absolute;
     font-size: 3rem;
+    color: var(--white);
     top: -11px;
 }
 
@@ -201,7 +215,7 @@ body{
     padding: 0.5rem;
     font-size: 1.25rem;
     border-radius: 10px;
-    color: var(--black);
+    color: var(--fourth-color);
     border: 1px solid rgba(0, 0, 0, 0.098);
     box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.02);
     outline: none;
@@ -213,7 +227,7 @@ body{
 
 #note-form button[type="submit"]{
     background-color: var(--green);
-    color: var(--gray);
+    color: var(--main-color);
     outline: none;
     border: none;
 }
@@ -241,7 +255,7 @@ body{
 
 .note-container{
     position: relative;
-    background-color: var(--gray); 
+    background-color: var(--main-color); 
     padding: 1rem;
     padding-top: 2.5rem;
     min-height: 150px;
@@ -260,6 +274,7 @@ body{
     width: 100%;
     height: 100%;
     padding: 1rem;
+    color: var(--black);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.131);
@@ -268,7 +283,7 @@ body{
 .note-title{
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--fourth-color);
     position: absolute;
     left: 2rem;
     top: 0.5rem;
@@ -284,7 +299,7 @@ body{
     height: 1.5rem;
     width: 1.5rem;
     font-size: 1rem;
-    color: var(--gray);
+    color: var(--white);
     background-color: var(--rose-red);
 }
 
@@ -300,7 +315,7 @@ body{
     height: 1.5rem;
     width: 1.5rem;
     font-size: 1rem;
-    color: var(--gray);
+    color: var(--white);
     background-color: var(--blue);
 }
 
@@ -334,11 +349,11 @@ body{
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
-    color: blue;
+    color: var(--blue);
 }
 
 .footer-link:hover{
-    color: rgb(53, 53, 248);
+    color: var(--lighter-blue);
 }
 
 .footer-link::after{

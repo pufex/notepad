@@ -103,14 +103,33 @@ noteForm.addEventListener('submit', (event) => {
 
 
 const visibilityToggle = document.querySelector("#toggle-visibility");
-console.log(visibilityToggle)
 
 
 visibilityToggle.addEventListener('click', () => {
-    const noteControls = document.querySelectorAll(".note-controls");
-    console.log(noteControls);
-    noteControls.forEach(item => {
-      if(item.classList.contains("hidden") == false) flag = true;
-      item.classList.toggle('hidden');
-    })
+  const noteControls = document.querySelectorAll(".note-controls");
+  noteControls.forEach(item => {
+    if(item.classList.contains("hidden") == false) flag = true;
+    item.classList.toggle('hidden');
+  })
+})
+
+const darkmodeToggle = document.querySelector("#dark-mode")
+let i=0, color = [
+  ["#ECEDE8", "#000000"],
+  ["#D6D6D6", "#272727"],
+  ["#5C5C5C", "#d3d3d3"],
+  ["#000000", "#ffffff"]
+]
+
+darkmodeToggle.addEventListener("click", () => {
+  i++;
+  darkmodeToggle.classList.toggle("dark-mode--active");
+  document.documentElement.style.setProperty('--main-color', color[0][i%2]);
+  console.log(color[0][i%2]);
+  document.documentElement.style.setProperty('--second-color', color[1][i%2]);
+  console.log(color[1][i%2]);
+  document.documentElement.style.setProperty('--third-color', color[2][i%2]);
+  console.log(color[2][i%2]);
+  document.documentElement.style.setProperty('--fourth-color', color[3][i%2]);
+  console.log(color[3][i&2]);
 })
