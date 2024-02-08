@@ -1,3 +1,23 @@
+function dodajElement(nowyElement) {
+  // Sprawdź, czy tablica już istnieje
+  if (!localStorage.getItem("elementy")) {
+    localStorage.setItem("elementy", "[]");
+  }
+
+  // Pobierz tablicę z localStorage
+  const elementy = JSON.parse(localStorage.getItem("elementy"));
+
+  // Dodaj nowy element do tablicy
+  elementy.push(nowyElement);
+
+  // Zapisz zaktualizowaną tablicę w localStorage
+  localStorage.setItem("elementy", JSON.stringify(elementy));
+}
+
+
+// dodajElement("Przykładowy element");
+
+
 let notes = [], objectNamesSeparator = "&", stringKey =  "notes-number-0";
 
 const getNotesFromLocal = () =>{
