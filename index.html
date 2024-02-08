@@ -7,54 +7,105 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <header class="container-item header">
-            <h1 class="header-title">Notepad</h1>
-            <div class="socials">
-                <a class="socials-link" href="https://github.com/pufex" target="_blank">
-                    <img id="github-image" class="socials-image" src="images/github.svg" alt="">
-                </a>
-                <a class="socials-link" href="https://twitter.com/">
-                    <img class="socials-image" src="images/twitter-logo-2.svg" alt="">
-                </a>
+    <header class="container-item header">
+        <nav class="nav">
+            <div class="hamburger">
+                <span class="hamburger-icon">
+                    ≣
+                </span>
+                <div class="hamburger-container hidden">
+                    <div class="hamburger-list">
+                        <div class="dark-mode notes-control">
+                            <!-- <span class="explain">
+                                <span class="explain-text">
+                                    Toggle darkmode
+                                </span>
+                                <span class="explain-triangle"></span>
+                            </span> -->
+                            <span class="icon icon-hamburger">Toggle darkmode</span>
+                        </div>
+                        <div class="toggle-visibility notes-control">
+                            <!-- <span class="explain">
+                                <span class="explain-text">
+                                    
+                                </span>
+                                <span class="explain-triangle"></span>
+                            </span> -->
+                            <span class="icon icon-hamburger">Toggle controls visibility</span>
+                        </div>
+                        <div class="add-note notes-control">
+                            <!-- <span class="explain">
+                                <span class="explain-text">
+                                    Add a new note
+                                </span>
+                                <span class="explain-triangle"></span>
+                            </span> -->
+                            <span class="icon icon-hamburger">Add new note</span>
+                        </div>
+                        <div class="socials margin-top">
+                            <a class="socials-link" href="https://github.com/pufex" target="_blank">
+                                <img id="github-image" class="socials-image" src="images/github.svg" alt="">
+                                <!-- <span class="explain">
+                                    <span class="explain-text">
+                                        My github
+                                    </span>
+                                    <span class="explain-triangle"></span>
+                                </span> -->
+                            </a>
+                            <a class="socials-link" href="https://twitter.com/">
+                                <img class="socials-image" src="images/twitter-logo-2.svg" alt="">
+                                <!-- <span class="explain">
+                                    <span class="explain-text">
+                                        My twitter (soon)
+                                    </span>
+                                    <span class="explain-triangle"></span>
+                                </span> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <h1 class="header-title">Notepad</h1>
             <div class="notes-controls">
-                <div id="dark-mode" class="notes-control">
-                    <span class="explain">
+                <div class="dark-mode notes-control">
+                    <span class="explain explain-bottom">
                         <span class="explain-text">
                             Toggle darkmode
                         </span>
-                        <span class="explain-triangle"></span>
+                        <span class="explain-triangle explain-triangle--bottom"></span>
                     </span>
                     <span class="icon">☼</span>
                 </div>
-                <div id="toggle-visibility" class="notes-control">
-                    <span class="explain">
+                <div class="toggle-visibility notes-control">
+                    <span class="explain explain-bottom">
                         <span class="explain-text">
                             Toggle notes controls visibility
                         </span>
-                        <span class="explain-triangle"></span>
+                        <span class="explain-triangle explain-triangle--bottom"></span>
                     </span>
                     <span class="icon">👁</span>
                 </div>
-                <div id="add-note" class="notes-control">
-                    <span class="explain">
+                <div class="add-note notes-control">
+                    <span class="explain explain-bottom">
                         <span class="explain-text">
                             Add a new note
                         </span>
-                        <span class="explain-triangle"></span>
+                        <span class="explain-triangle explain-triangle--bottom"></span>
                     </span>
                     <span class="icon">+</span>
                 </div>
             </div>
-        </header>
+        </nav>
+        
+    </header>
+    <div class="container">
         <form id="note-form" class="hidden">
             <div class="note-form--labels">
                 <label class="note-form--header">Enter note title and content</label>
                 <label class="note-form--error"></label>
             </div>
-            <input type="text" name="note-title" id="note-title">
-            <input type="text" name="note-content" id="note-content">
+            <input type="text" name="note-title" id="note-title" placeholder="title">
+            <input type="text" name="note-content" id="note-content" placeholder="content">
             <input type="submit" value="Submit">
         </form>
         <div class="container-item notes">
@@ -62,7 +113,10 @@
                 Here is the place for the notes you're gonna make in the future. 
             </p>
             <p class="text-paragraph">
-                To add a note simply use the button with the "+" inside. To delete the notes toggle the delete icons with the red "X" button. To select notes press the blue button.
+                To add a note simply use the button with the <i class="mark-text-green">"+"</i> inside. To toggle the notes' options, press the one with the red <i class="mark-text-red">"👁"</i> button. To toggle darkmode press the blue <i class="mark-text-blue">"☼"</i>.
+            </p>
+            <p class="text-paragraph mobile-text">
+                If you're viewing this site on a mobile device, click on the "≣" icon to open a menu with the controls mentioned earlier.
             </p>
             <p class="text-paragraph text-paragraph--last">
                 This text will disappear as soon as you make your first note. Have fun!
@@ -72,5 +126,6 @@
             <a class="footer-link" href="https://github.com/pufex" target="_blank">My github</a>
             <a class="footer-link" href="mailto:j.abram1@wp.pl" target="_blank">Email me</a>
         </footer>
+        <script src="app.js"></script>
 </body>
 </html>

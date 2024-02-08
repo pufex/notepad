@@ -24,8 +24,14 @@ const renderNotes = () => {
     const noteDelete = elementCreating("div", "delete-note", "notes-control", "");
     noteButtons.append(noteDelete);
 
-    const explanationDelete = elementCreating("span", "explain", "x", "Delete this note")
+    const explanationDelete = elementCreating("span", "explain", "x", "")
     noteDelete.append(explanationDelete);
+
+    const explanationDeleteText = elementCreating("span", "explain-text", "x", "Delete this note")
+    let explanationTriangle = elementCreating("span", "explain-triangle", "x", "")
+    console.log(explanationTriangle);
+
+    explanationDelete.append(explanationTriangle, explanationDeleteText);
 
     const iconDelete = elementCreating("span", "icon", "x", "🗑");
     noteDelete.append(iconDelete);
@@ -41,8 +47,10 @@ const renderNotes = () => {
     const noteEdit = elementCreating("div", "edit-note", "notes-control", "");
     noteButtons.append(noteEdit);
 
-    const explanationEdit = elementCreating("span", "explain", "x", "Edit this note")
+    const explanationEdit = elementCreating("span", "explain", "x", "")
     noteEdit.append(explanationEdit);
+    const explanationEditText = elementCreating("span", "explain-text", "x", "Edit this note")
+    explanationEdit.append(explanationTriangle, explanationEditText);
 
     const iconEdit = elementCreating("span", "icon", "x", "✎");
     noteEdit.append(iconEdit);
@@ -96,21 +104,24 @@ const renderNotes = () => {
 
 renderNotes();
 
-const addNote = document.querySelector("#add-note");
-const IconAddNote = addNote.querySelector(".icon");
+const noteForm = document.querySelector("#note-form");
+const addNote = document.querySelectorAll(".add-note");
 
-addNote.addEventListener('click', () => {
-  if(noteForm.classList.contains('hidden') != false) {
-    noteForm.classList.toggle('hidden');
-    IconAddNote.innerText = "⤻"
-  } else{
-    noteForm.classList.toggle('hidden');
-    IconAddNote.innerText = "+"
-  }
+addNote.forEach((item) => {
+  item.addEventListener('click', () => {
+    const IconAddNote = item.querySelector(".icon");
+    if(noteForm.classList.contains('hidden') != false) {
+      noteForm.classList.remove('hidden');
+      IconAddNote.innerText = "⤻"
+    } else{
+      noteForm.classList.add('hidden');
+      IconAddNote.innerText = "+"
+    }
+  })
 })
 
+
 const notesContainer = document.querySelector(".notes")
-const noteForm = document.querySelector("#note-form");
 const formErrorLabel = document.querySelector(".note-form--error");
 
 
@@ -135,40 +146,54 @@ noteForm.addEventListener('submit', (event) => {
   userData.content = userContent;
   notes.push(userData);
   notesContainer.innerHTML = "";
-  IconAddNote.innerHTML = "+";
+  // IconAddNote.innerHTML = "+";
   renderNotes();
 })
 
 
 
-const visibilityToggle = document.querySelector("#toggle-visibility");
+const visibilityToggles = document.querySelectorAll(".toggle-visibility");
 
-
-visibilityToggle.addEventListener('click', () => {
-  const noteControls = document.querySelectorAll(".note-controls");
-  noteControls.forEach(item => {
-    if(item.classList.contains("hidden") == false) flag = true;
-    item.classList.toggle('hidden');
+visibilityToggles.forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    let noteControls = document.querySelectorAll(".note-controls");
+    noteControls.forEach((item) => {
+      if(item.classList.contains("hidden") == false) flag = true;
+      item.classList.toggle('hidden');
+    })
   })
 })
 
-const darkmodeToggle = document.querySelector("#dark-mode")
+
+const darkmodeToggles = document.querySelectorAll(".dark-mode")
+
 let i=0, color = [
   ["#ECEDE8", "#000000"],
   ["#D6D6D6", "#272727"],
   ["#5C5C5C", "#d3d3d3"],
-  ["#000000", "#ffffff"]
+  ["#000000", "#ffffff"],
+  ["#0000ff", "#00bbf0"],
+  ["#2323ff", "#04c9ff"]
 ]
 
-darkmodeToggle.addEventListener("click", () => {
-  i++;
-  darkmodeToggle.classList.toggle("dark-mode--active");
-  document.documentElement.style.setProperty('--main-color', color[0][i%2]);
-  console.log(color[0][i%2]);
-  document.documentElement.style.setProperty('--second-color', color[1][i%2]);
-  console.log(color[1][i%2]);
-  document.documentElement.style.setProperty('--third-color', color[2][i%2]);
-  console.log(color[2][i%2]);
-  document.documentElement.style.setProperty('--fourth-color', color[3][i%2]);
-  console.log(color[3][i&2]);
+darkmodeToggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    i++;
+    toggle.classList.toggle("dark-mode--active");
+    document.documentElement.style.setProperty('--main-color', color[0][i%2]);
+    document.documentElement.style.setProperty('--second-color', color[1][i%2]);
+    document.documentElement.style.setProperty('--third-color', color[2][i%2]);
+    document.documentElement.style.setProperty('--fourth-color', color[3][i%2]);
+    document.documentElement.style.setProperty('--footer-link', color[4][i%2]);
+    document.documentElement.style.setProperty('--footer-link-hover', color[5][i%2]);
+  })
 })
+
+
+const hamburger = document.querySelector(".hamburger");
+const hamburgerList = document.querySelector(".hamburger-container");
+
+hamburger.addEventListener("click", () => {
+  hamburgerList.classList.toggle("hidden");
+})
+
