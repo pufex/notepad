@@ -1,4 +1,41 @@
-let notes = [];
+let notes = [], objectNamesSeparator = "&", stringKey =  "notes-number-0";
+
+const getNotesFromLocal = () =>{
+  let i = 0, data = "", newKey = stringKey.slice(0, stringKey.length-1) + i.toString();
+  while(localStorage.getItem(newKey) != null){
+    notes[i] = {
+      id: "",
+      title: "",
+      content: "",
+    }
+
+    data = localStorage.getItem(newKey);
+    
+    let position;
+    position = data.indexOf(objectNamesSeparator);
+    notes[i].id = Number(data.slice(0, position));
+    data = data.slice(position+1);
+
+    position = data.indexOf(objectNamesSeparator);
+    notes[i].title = data.slice(0, position);
+    data = data.slice(position+1);
+
+    position = data.indexOf(objectNamesSeparator);
+    notes[i].content = data.slice(0, position);
+    data = data.slice(position+1);
+
+    i++;
+    newKey = stringKey.slice(0, stringKey.length-1) + i.toString();
+  }
+}
+
+localStorage.setItem("notes-number-0", "0&title&content1&");
+localStorage.setItem("notes-number-1", "1&title&content2&");
+localStorage.setItem("notes-number-2", "2&title&content3&");
+localStorage.setItem("notes-number-3", "3&title&content4&");
+getNotesFromLocal();
+console.log(notes);
+
 let flag = false;
 
 const elementCreating = (element, class1, class2, text) => {
@@ -37,8 +74,8 @@ const renderNotes = () => {
     noteDelete.append(iconDelete);
 
     noteDelete.addEventListener('click', (e) => {
-      const filter = notes.filter((note) => note.id != noteContainer.id);
-      notes = filter;
+      const filteredValue = notes.filter((note) => note.id == noteContainer.id);
+      notes = notes.filter((note) => note.id != noteContainer.id);
       console.log(notes);
       const ancestorContainer = e.target.closest('.note-container');
       ancestorContainer.remove();
@@ -82,7 +119,7 @@ const renderNotes = () => {
       container.append(update);
 
       body.append(window);
-
+      
       update.addEventListener('click', (e) => {
 
         notes[objectNote.id].title = inputTitle.value;
@@ -102,6 +139,7 @@ const renderNotes = () => {
   })
 }
 
+const notesContainer = document.querySelector(".notes")
 renderNotes();
 
 const noteForm = document.querySelector("#note-form");
@@ -121,7 +159,6 @@ addNote.forEach((item) => {
 })
 
 
-const notesContainer = document.querySelector(".notes")
 const formErrorLabel = document.querySelector(".note-form--error");
 
 
@@ -137,7 +174,7 @@ noteForm.addEventListener('submit', (event) => {
   }
   noteForm.classList.toggle('hidden');
   let userData = {
-    id: notes.length,
+    id: notes.length-1,
     title: "",
     content: "",
   };
@@ -145,6 +182,12 @@ noteForm.addEventListener('submit', (event) => {
   userData.title = userTitle;
   userData.content = userContent;
   notes.push(userData);
+  let storageData, newKey = stringKey.slice(0, stringKey.length-1) + (notes.length - 1).toString;
+  storageData = storageData + notes.length + objectNamesSeparator;
+  storageData = storageData + userTitle + objectNamesSeparator;
+  storageData = storageData + userContent + objectNamesSeparator;
+
+  localStorage.setItem(newKey, storageData);
   notesContainer.innerHTML = "";
   // IconAddNote.innerHTML = "+";
   renderNotes();

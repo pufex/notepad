@@ -118,7 +118,7 @@ i{
     background-color: var(--main-color);
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.11);
-    z-index: 999;
+    z-index: 998;
 }
 
 .hamburger-icon{
@@ -146,7 +146,7 @@ i{
     top: 100%;
     left: 0;
     width: 100vw;
-    z-index: 999;
+    z-index: 998;
     height: 300px;
     padding: 0.5rem;
 }
@@ -461,6 +461,7 @@ i{
     top: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 999;
     background-color: rgba(0, 0, 0, 0.734);
 }
 
