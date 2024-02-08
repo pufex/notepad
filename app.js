@@ -66,6 +66,9 @@ const elementCreating = (element, class1, class2, text) => {
 }
 
 const renderNotes = () => {
+
+  notes.sort((a,b) => b.id - a.id)
+  
   notes.forEach((note) => {
   
     const noteContainer = elementCreating("div", "container-item", "note-container", "");
