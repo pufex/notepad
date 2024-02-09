@@ -1,62 +1,15 @@
-function dodajElement(nowyElement) {
-  // Sprawdź, czy tablica już istnieje
-  if (!localStorage.getItem("elementy")) {
-    localStorage.setItem("elementy", "[]");
-  }
-
-  // Pobierz tablicę z localStorage
-  const elementy = JSON.parse(localStorage.getItem("elementy"));
-
-  // Dodaj nowy element do tablicy
-  elementy.push(nowyElement);
-
-  // Zapisz zaktualizowaną tablicę w localStorage
-  localStorage.setItem("elementy", JSON.stringify(elementy));
-}
-
-
-// dodajElement("Przykładowy element");
-
-
-let notes = [], objectNamesSeparator = "&", stringKey =  "notes-number-0";
+let notes = [], stringKey =  "notes";
 
 const getNotesFromLocal = () =>{
-  let i = 0, data = "", newKey = stringKey.slice(0, stringKey.length-1) + i.toString();
-  while(localStorage.getItem(newKey) != null){
-    notes[i] = {
-      id: "",
-      title: "",
-      content: "",
-    }
-
-    data = localStorage.getItem(newKey);
-    
-    let position;
-    position = data.indexOf(objectNamesSeparator);
-    notes[i].id = Number(data.slice(0, position));
-    data = data.slice(position+1);
-
-    position = data.indexOf(objectNamesSeparator);
-    notes[i].title = data.slice(0, position);
-    data = data.slice(position+1);
-
-    position = data.indexOf(objectNamesSeparator);
-    notes[i].content = data.slice(0, position);
-    data = data.slice(position+1);
-
-    i++;
-    newKey = stringKey.slice(0, stringKey.length-1) + i.toString();
-  }
+  let array = [];
+  if(localStorage.getItem(stringKey) != null){
+    return JSON.parse(localStorage.getItem(stringKey))
+  } else [];
 }
 
-localStorage.setItem("notes-number-0", "0&title&content1&");
-localStorage.setItem("notes-number-1", "1&title&content2&");
-localStorage.setItem("notes-number-2", "2&title&content3&");
-localStorage.setItem("notes-number-3", "3&title&content4&");
-getNotesFromLocal();
-console.log(notes);
-
-let flag = false;
+const saveNotesToLocal = (array = []) => {
+  localStorage.setItem(stringKey, JSON.stringify(array));
+}
 
 const elementCreating = (element, class1, class2, text) => {
   element = document.createElement(element);
@@ -65,19 +18,40 @@ const elementCreating = (element, class1, class2, text) => {
   return element;
 }
 
-const renderNotes = () => {
+const renderWelcomeMessage = (array = []) =>{
+  const notes = document.querySelector(".notes");
+  if(array.length == 0){
+    const paragraphs = [
+      elementCreating("p", "text-paragraph", "x", "Here is the place for the notes you're gonna make in the future."),
+      elementCreating("p", "text-paragraph", "x", "To add a note simply use the button with the '+' inside. To toggle the notes' options, press the one with the red '👁' button. To toggle darkmode press the blue '☼'."),
+      elementCreating("p", "text-paragraph", "x", "If you're viewing this site on a mobile device, click on the '≣' icon to open a menu with the controls mentioned earlier."),
+      elementCreating("p", "text-paragraph", "text-paragraph--last", "                This text will disappear as soon as you make your first note. Have fun!"),
+    ]
+    paragraphs.forEach((item) => {
+      notes.append(item);
+    })
+  }
+}
 
-  notes.sort((a,b) => b.id - a.id)
-  
-  notes.forEach((note) => {
+notes = getNotesFromLocal();
+console.log(notes.length)
+renderWelcomeMessage(notes);
+
+let flag = false;
+
+
+const renderNotes = () => {
+  notesContainer.innerHTML = "";
+  notes.sort((a, b) => a - b);
+  notes.forEach((note, index) => {
   
     const noteContainer = elementCreating("div", "container-item", "note-container", "");
-    noteContainer.id = note.id;
-    noteContainer.setAttribute("id", noteContainer.id);
+    noteContainer.id = index;
+    noteContainer.setAttribute("id", index);
   
     const noteTitle = elementCreating("h1", "note-title", "x", note.title);
 
-    const noteNumber = elementCreating("h3", "note-number", "x", `#${note.id+1}`);
+    const noteNumber = elementCreating("h3", "note-number", "x", `#${index+1}`);
     
     const noteButtons = elementCreating("div", "notes-controls", "note-controls", "");
     
@@ -97,9 +71,12 @@ const renderNotes = () => {
     noteDelete.append(iconDelete);
 
     noteDelete.addEventListener('click', (e) => {
-      const filteredValue = notes.filter((note) => note.id == noteContainer.id);
-      notes = notes.filter((note) => note.id != noteContainer.id);
-      console.log(notes);
+      const filteredValue = notes.filter((note, i) => i == noteContainer.id);
+      notes = notes.filter((note, i) => i != noteContainer.id);
+      saveNotesToLocal(notes);
+      console.log(notes)
+      console.log(localStorage);
+      renderNotes();
       const ancestorContainer = e.target.closest('.note-container');
       ancestorContainer.remove();
     })
@@ -117,7 +94,7 @@ const renderNotes = () => {
 
 
     iconEdit.addEventListener('click', (e1) => {
-      const objectNote = notes.find((note) => note.id == noteContainer.id);
+      const objectNote = notes.find((note , i) => i == noteContainer.id);
 
       const body = document.querySelector("body");
 
@@ -127,7 +104,7 @@ const renderNotes = () => {
       const container = elementCreating("div", "edit-container", "x", "");
       window.append(container)
       
-      const title = elementCreating("h1", "edit-title", "x", "Edit note " + (objectNote.id + 1));
+      const title = elementCreating("h1", "edit-title", "x", "Edit note " + (i + 1));
       container.append(title);
 
       const inputTitle = elementCreating("input", "edit-input", "x", "");
@@ -144,16 +121,15 @@ const renderNotes = () => {
       body.append(window);
       
       update.addEventListener('click', (e) => {
-
-        notes[objectNote.id].title = inputTitle.value;
-        notes[objectNote.id].content = inputContent.value;
+        notes[index].title = inputTitle.value;
+        notes[index].content = inputContent.value;
         console.log(notes);
-        notesContainer.innerHTML = "";
+        saveNotesToLocal(notes);
         renderNotes();
         window.remove();
       })
     })
-    
+
     const noteContent = elementCreating("div", "note", "x", note.content);
 
     
@@ -205,13 +181,7 @@ noteForm.addEventListener('submit', (event) => {
   userData.title = userTitle;
   userData.content = userContent;
   notes.push(userData);
-  let storageData, newKey = stringKey.slice(0, stringKey.length-1) + (notes.length - 1).toString;
-  storageData = storageData + notes.length + objectNamesSeparator;
-  storageData = storageData + userTitle + objectNamesSeparator;
-  storageData = storageData + userContent + objectNamesSeparator;
-
-  localStorage.setItem(newKey, storageData);
-  notesContainer.innerHTML = "";
+  saveNotesToLocal(notes);
   // IconAddNote.innerHTML = "+";
   renderNotes();
 })
