@@ -368,8 +368,8 @@ i{
 .note-container{
     position: relative;
     background-color: var(--main-color); 
-    padding: 1rem;
-    padding-top: 2.5rem;
+    padding: 0.4rem;
+    padding-top: 2rem;
     height: 100vh;
     max-height: 150px;
     min-width: 100%;
@@ -378,7 +378,7 @@ i{
     border-top-right-radius: 15px;
 }
 
-.note-container:hover .note{
+.note-container:hover .note:hover{
     background-color: var(--lighter-yellow);
 }
 
@@ -394,26 +394,26 @@ i{
 }
 
 .note-title{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--fourth-color);
     position: absolute;
     left: 2rem;
-    top: 0.5rem;
+    top: 0.25rem;
 }
 
 .note-controls{
     position: absolute;
     right: 1rem;
-    top: 0.5rem;
+    top: 0.25rem;
 }
 
 .note-number{
     position: absolute;
-    top: 0.5rem;
+    top: 0.25rem;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--black);
 }
@@ -461,6 +461,7 @@ i{
     top: 0;
     width: 100vw;
     height: 100vh;
+    padding: 1rem;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.734);
 }
