@@ -4,7 +4,7 @@ const getNotesFromLocal = () =>{
   let array = [];
   if(localStorage.getItem(stringKey) != null){
     return JSON.parse(localStorage.getItem(stringKey))
-  } else [];
+  } else return [];
 }
 
 const saveNotesToLocal = (array = []) => {
@@ -34,7 +34,6 @@ const renderWelcomeMessage = (array = []) =>{
 }
 
 notes = getNotesFromLocal();
-console.log(notes.length)
 renderWelcomeMessage(notes);
 
 let flag = false;
@@ -42,7 +41,6 @@ let flag = false;
 
 const renderNotes = () => {
   notesContainer.innerHTML = "";
-  notes.sort((a, b) => a - b);
   notes.forEach((note, index) => {
   
     const noteContainer = elementCreating("div", "container-item", "note-container", "");
@@ -74,8 +72,6 @@ const renderNotes = () => {
       const filteredValue = notes.filter((note, i) => i == noteContainer.id);
       notes = notes.filter((note, i) => i != noteContainer.id);
       saveNotesToLocal(notes);
-      console.log(notes)
-      console.log(localStorage);
       renderNotes();
       const ancestorContainer = e.target.closest('.note-container');
       ancestorContainer.remove();
@@ -87,7 +83,8 @@ const renderNotes = () => {
     const explanationEdit = elementCreating("span", "explain", "x", "")
     noteEdit.append(explanationEdit);
     const explanationEditText = elementCreating("span", "explain-text", "x", "Edit this note")
-    explanationEdit.append(explanationTriangle, explanationEditText);
+    let explanationTriangle1 = elementCreating("span", "explain-triangle", "x", "")
+    explanationEdit.append(explanationTriangle1, explanationEditText);
 
     const iconEdit = elementCreating("span", "icon", "x", "✎");
     noteEdit.append(iconEdit);
@@ -173,7 +170,6 @@ noteForm.addEventListener('submit', (event) => {
   }
   noteForm.classList.toggle('hidden');
   let userData = {
-    id: notes.length-1,
     title: "",
     content: "",
   };
@@ -184,6 +180,8 @@ noteForm.addEventListener('submit', (event) => {
   saveNotesToLocal(notes);
   // IconAddNote.innerHTML = "+";
   renderNotes();
+  event.target[0].value = "";
+  event.target[1].value = "";
 })
 
 
